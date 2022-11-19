@@ -12,12 +12,20 @@
 // 
 // ==========================================================================
 
+const containerBooks = document.querySelector('.containerBooks');
+
 const form = document.querySelector('.myForm');
+form.addEventListener("submit", (e) => {
+    e.preventDefault();     // prevents page refreshing
+    addBookToLibrary();
+    displayForm();
+});
+
 const overlay = document.querySelector('.overlay');
 overlay.addEventListener("click", displayForm);
+
 const addButton = document.querySelector('.addBook');
 addButton.addEventListener("click", displayForm);
-
 
 // ==========================================================================
 // 
@@ -25,70 +33,44 @@ addButton.addEventListener("click", displayForm);
 
 let myLibrary = [];
 
-addBookToLibrary('hurr', 'dur', 11, true);
-// addBookToLibrary('szur', 'dur', 10, true);
-// addBookToLibrary('szur', 'dur', 10, true);
-// addBookToLibrary('szur', 'dur', 10, true);
-// addBookToLibrary('szur', 'dur', 10, true);
-// addBookToLibrary('szur', 'dur', 10, true);
-// addBookToLibrary('szur', 'dur', 10, true);
-// addBookToLibrary('szur', 'dur', 10, true);
-// addBookToLibrary('szur', 'dur', 10, true);
-// addBookToLibrary('szur', 'dur', 10, true);
-// addBookToLibrary('szur', 'dur', 10, true);
-// addBookToLibrary('szur', 'dur', 10, true);
-// addBookToLibrary('szur', 'dur', 10, true);
-// addBookToLibrary('szur', 'dur', 10, true);
-// addBookToLibrary('szur', 'dur', 10, true);
-// addBookToLibrary('szur', 'dur', 10, true);
-// addBookToLibrary('szur', 'dur', 10, true);
-// addBookToLibrary('szur', 'dur', 10, true);
-// addBookToLibrary('szur', 'dur', 10, true);
-// addBookToLibrary('szur', 'dur', 10, true);
-// addBookToLibrary('szur', 'dur', 10, true);
-// addBookToLibrary('szur', 'dur', 10, true);
-// addBookToLibrary('szur', 'dur', 10, true);
-// addBookToLibrary('szur', 'dur', 10, true);
-// addBookToLibrary('szur', 'dur', 10, true);
-// addBookToLibrary('szur', 'dur', 10, true);
-// addBookToLibrary('szur', 'dur', 10, true);
-// addBookToLibrary('szur', 'dur', 10, true);
-// addBookToLibrary('szur', 'dur', 10, true);
-// addBookToLibrary('szur', 'dur', 10, true);
-
 function Book(title, author, pages, isRead) {
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.isRead = isRead;
     this.info = function() {
-        if (isRead == true) {
+        if (isRead == on) {
             return `${this.title} by ${author}, ${pages} pages, already read`
-        } else if (isRead == false) {
+        } else if (isRead == off) {
             return `${this.title} by ${author}, ${pages} pages, not read yet`
         };
     };
 };
 
-function getInfo(){
+function addBookToLibrary() {
     const title = document.getElementById('title').value;
     const author = document.getElementById('author').value;
     const pages = document.getElementById('pages').value;
-    const isRead = document.getElementById('isRead').value;
-    addBookToLibrary(title, author, pages, isRead);
-};
-
-function addBookToLibrary(title, author, pages, isRead) {
+    const isRead = document.getElementById('isRead');
     let book = new Book(title, author, pages, isRead);
     myLibrary.push(book);
+    resetPopup();
+    displayBooks();
+};
+
+function resetPopup() {
+    title.value = '';
+    author.value = '';
+    pages.value = '';
+    isRead.checked = false;
 };
 
 function displayBooks() {
+    containerBooks.innerHTML = '';      // Refresh the grid
     myLibrary.forEach(book => createCard(book));
 };
 
 function createCard(book) {
-    const containerBooks = document.querySelector('.containerBooks');
     const card = document.createElement('div.card');
     const divTitle = document.createElement('div.title');
     const divAuthor = document.createElement('div.author');
@@ -104,13 +86,9 @@ function displayForm() {
     if (overlay.classList.contains('active')) {
         overlay.classList.remove('active')
         form.classList.remove('active')
-        console.log('Its not a block now')
     } else {
         overlay.classList.add('active')
         form.classList.add('active')
-        console.log('Its a block now')
     }
 };
-
-displayBooks();
 
