@@ -1,0 +1,176 @@
+/* ========================================================================== */
+/* General */
+/* ========================================================================== */
+
+:root {
+    --tan: hsl(42, 20%, 81%);
+    --light-tan: hsl(40, 38%, 92%);
+    --light-orange: hsl(33, 66%, 58%);
+    --light-green: #9fff9c;
+    --grey: hsl(0, 2%, 34%);
+    --black: hsl(0, 0%, 2%);
+    --blue-gray: hsl(222, 30%, 15%);
+    --bg-black: rgba(0,0,0,0.5);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: var(--blue-gray);
+    background-color: var(--light-tan);
+
+    min-height: 100vh;
+    margin: 1rem 2rem 1rem 2rem;
+
+    display: grid;
+    grid-template-rows: 165px 1fr 35px;
+    gap: 2rem;
+}
+
+.overlay {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--bg-black);
+    z-index: 1;
+}
+
+/* ========================================================================== */
+/* Header */
+/* ========================================================================== */
+
+.header {
+    background-color: var(--tan);
+    font-family: 'Cinzel', 'Times New Roman', Times, serif;
+    font-size: 3rem;
+    
+    border-radius: 1rem;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ========================================================================== */
+/* Main */
+/* ========================================================================== */
+
+.main {
+    position: relative;
+    display: grid;
+    grid-template-rows: 60px 1fr;
+    gap: 2.5rem;
+}
+
+.main .addBook {
+    border-style: none;
+    border-radius: 1rem;
+    background-color: var(--tan);
+    font-size: 1.75rem;
+    height: 4rem;
+    width: 15rem;
+    justify-self: center;
+    cursor: pointer;
+}
+
+/* ========================================================================== */
+/* My Form */
+/* ========================================================================== */
+
+.myForm {
+    position: fixed;
+    display: none;
+    z-index: 1;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    border-radius: 1rem;
+    background-color: var(--tan);
+}
+
+.overlay.active,
+.myForm.active {
+    display: block;
+}
+
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin: 3rem 4rem;
+    font-size: 2rem;
+}
+
+.formContainer > div:first-of-type {
+    font-size: 3rem;
+}
+
+input[type=text],
+input[type=number] {
+    width: 100%;
+    height: 3.5rem;
+    border-style: none;
+    border-radius: 1rem;
+    padding: 1rem;
+    font-size: 1.5rem;
+}
+
+input[type=checkbox] {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin: 0.5rem;
+}
+
+.formContainer button {
+    width: 100%;
+    height: 3.5rem;
+    font-size: 1.75rem;
+    border-style: none;
+    border-radius: 1rem;
+    background-color: var(--light-green);
+}
+
+/* ========================================================================== */
+/* Book Container */
+/* ========================================================================== */
+
+.containerBooks {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 275px);
+    grid-auto-rows: 17rem;
+    gap: 2rem;
+    justify-content: center;
+    overflow: auto;
+}
+
+.containerBooks > * {
+    background-color: var(--tan);
+    border-radius: 1rem;
+    display: grid;
+    grid-template-rows: repeat(5, 1fr);
+    justify-items: center;
+    align-items: center;
+}
+
+/* ========================================================================== */
+/* Footer */
+/* ========================================================================== */
+
+.footer {
+    font-family: 'Caveat', 'Times New Roman', Times, serif;
+    font-size: 1.25rem;
+    justify-self: center;
+}

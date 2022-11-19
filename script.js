@@ -12,9 +12,12 @@
 // 
 // ==========================================================================
 
-const form = document.querySelector('#my-form');
+const form = document.querySelector('.myForm');
+const overlay = document.querySelector('.overlay');
+overlay.addEventListener("click", displayForm);
 const addButton = document.querySelector('.addBook');
 addButton.addEventListener("click", displayForm);
+
 
 // ==========================================================================
 // 
@@ -23,7 +26,35 @@ addButton.addEventListener("click", displayForm);
 let myLibrary = [];
 
 addBookToLibrary('hurr', 'dur', 11, true);
-addBookToLibrary('szur', 'dur', 10, true);
+// addBookToLibrary('szur', 'dur', 10, true);
+// addBookToLibrary('szur', 'dur', 10, true);
+// addBookToLibrary('szur', 'dur', 10, true);
+// addBookToLibrary('szur', 'dur', 10, true);
+// addBookToLibrary('szur', 'dur', 10, true);
+// addBookToLibrary('szur', 'dur', 10, true);
+// addBookToLibrary('szur', 'dur', 10, true);
+// addBookToLibrary('szur', 'dur', 10, true);
+// addBookToLibrary('szur', 'dur', 10, true);
+// addBookToLibrary('szur', 'dur', 10, true);
+// addBookToLibrary('szur', 'dur', 10, true);
+// addBookToLibrary('szur', 'dur', 10, true);
+// addBookToLibrary('szur', 'dur', 10, true);
+// addBookToLibrary('szur', 'dur', 10, true);
+// addBookToLibrary('szur', 'dur', 10, true);
+// addBookToLibrary('szur', 'dur', 10, true);
+// addBookToLibrary('szur', 'dur', 10, true);
+// addBookToLibrary('szur', 'dur', 10, true);
+// addBookToLibrary('szur', 'dur', 10, true);
+// addBookToLibrary('szur', 'dur', 10, true);
+// addBookToLibrary('szur', 'dur', 10, true);
+// addBookToLibrary('szur', 'dur', 10, true);
+// addBookToLibrary('szur', 'dur', 10, true);
+// addBookToLibrary('szur', 'dur', 10, true);
+// addBookToLibrary('szur', 'dur', 10, true);
+// addBookToLibrary('szur', 'dur', 10, true);
+// addBookToLibrary('szur', 'dur', 10, true);
+// addBookToLibrary('szur', 'dur', 10, true);
+// addBookToLibrary('szur', 'dur', 10, true);
 
 function Book(title, author, pages, isRead) {
     this.title = title;
@@ -70,10 +101,14 @@ function createCard(book) {
 };
 
 function displayForm() {
-    if(form.hasAttribute('hidden')) {
-        form.removeAttribute('hidden');
+    if (overlay.classList.contains('active')) {
+        overlay.classList.remove('active')
+        form.classList.remove('active')
+        console.log('Its not a block now')
     } else {
-        form.setAttribute('hidden', '');
+        overlay.classList.add('active')
+        form.classList.add('active')
+        console.log('Its a block now')
     }
 };
 
