@@ -39,9 +39,9 @@ function Book(title, author, pages, isRead) {
     this.pages = pages;
     this.isRead = isRead;
     this.info = function() {
-        if (isRead == on) {
+        if (isRead == true) {
             return `${this.title} by ${author}, ${pages} pages, already read`
-        } else if (isRead == off) {
+        } else if (isRead == false) {
             return `${this.title} by ${author}, ${pages} pages, not read yet`
         };
     };
@@ -51,11 +51,11 @@ function addBookToLibrary() {
     const title = document.getElementById('title').value;
     const author = document.getElementById('author').value;
     const pages = document.getElementById('pages').value;
-    const isRead = document.getElementById('isRead');
+    const isRead = document.getElementById('isRead').checked;
     let book = new Book(title, author, pages, isRead);
     myLibrary.push(book);
-    resetPopup();
     displayBooks();
+    resetPopup();
 };
 
 function resetPopup() {
@@ -72,14 +72,32 @@ function displayBooks() {
 
 function createCard(book) {
     const card = document.createElement('div.card');
+    card.setAttribute('data-attribute', myLibrary.indexOf(book));
+
     const divTitle = document.createElement('div.title');
     const divAuthor = document.createElement('div.author');
     const divPages = document.createElement('div.pages');
+    
+    const statusBtn = document.createElement('button');
+    if (book.isRead == true) {
+        statusBtn.classList.add('statusBtn', 'read');
+        statusBtn.innerText = 'Read';
+    } else if (book.isRead == false) {
+        statusBtn.classList.add('statusBtn', 'unread')
+        statusBtn.textContent = 'Unread';
+    };
+    
+    const removeBtn = document.createElement('button');
+    removeBtn.classList.add('removeBtn');
+    removeBtn.textContent = 'Remove';
+    removeBtn.addEventListener('click', removeElement);
+    
     divTitle.textContent = `"${book.title}"`;
     divAuthor.textContent = `${book.author}`;
     divPages.textContent = `${book.pages}`;
+    
     containerBooks.append(card);
-    card.append(divTitle, divAuthor, divPages);
+    card.append(divTitle, divAuthor, divPages, statusBtn, removeBtn);
 };
 
 function displayForm() {
@@ -92,3 +110,8 @@ function displayForm() {
     }
 };
 
+function removeElement(e) {
+    const element = e.target.parentElement;
+    myLibrary.splice(element.getAttribute('data-attribute'), 1);
+    element.remove();
+};

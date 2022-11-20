@@ -7,6 +7,7 @@
     --light-tan: hsl(40, 38%, 92%);
     --light-orange: hsl(33, 66%, 58%);
     --light-green: #9fff9c;
+    --red: hsl(0, 99%, 50%);
     --grey: hsl(0, 2%, 34%);
     --black: hsl(0, 0%, 2%);
     --blue-gray: hsl(222, 30%, 15%);
@@ -25,9 +26,9 @@ body {
     font-family: Georgia, 'Times New Roman', Times, serif;
     color: var(--blue-gray);
     background-color: var(--light-tan);
-
+    
     min-height: 100vh;
-    margin: 1rem 2rem 1rem 2rem;
+    margin: 0rem 2rem;
 
     display: grid;
     grid-template-rows: 165px 1fr 35px;
@@ -55,6 +56,7 @@ body {
     background-color: var(--tan);
     font-family: 'Cinzel', 'Times New Roman', Times, serif;
     font-size: 3rem;
+    margin-top: 1rem;
     
     border-radius: 1rem;
     
@@ -163,6 +165,23 @@ input[type=checkbox] {
     grid-template-rows: repeat(5, 1fr);
     justify-items: center;
     align-items: center;
+}
+
+.statusBtn,
+.removeBtn {
+    width: 70%;
+    height: 3rem;
+    border-style: none;
+    border-radius: 1rem;
+    cursor: pointer;
+}
+
+.statusBtn.read {
+    background-color: var(--light-green);
+}
+
+.statusBtn.unread {
+    background-color: var(--red);
 }
 
 /* ========================================================================== */
