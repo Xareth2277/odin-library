@@ -19,6 +19,7 @@ form.addEventListener("submit", (e) => {
     e.preventDefault();     // prevents page refreshing
     addBookToLibrary();
     displayForm();
+    console.table(myLibrary);
 });
 
 const overlay = document.querySelector('.overlay');
@@ -86,6 +87,7 @@ function createCard(book) {
         statusBtn.classList.add('statusBtn', 'unread')
         statusBtn.textContent = 'Unread';
     };
+    statusBtn.addEventListener('click', changeStatus);
     
     const removeBtn = document.createElement('button');
     removeBtn.classList.add('removeBtn');
@@ -110,8 +112,21 @@ function displayForm() {
     }
 };
 
+function changeStatus(e) {
+    const element = e.target.parentElement;
+    if (myLibrary[element.getAttribute('data-attribute')].isRead) {
+        myLibrary[element.getAttribute('data-attribute')].isRead = false;
+        console.log('to false')
+    } else if (!myLibrary[element.getAttribute('data-attribute')].isRead) {
+        myLibrary[element.getAttribute('data-attribute')].isRead = true;
+        console.log('to true')
+    }
+    console.table(myLibrary);
+    displayBooks();
+};
+
 function removeElement(e) {
     const element = e.target.parentElement;
     myLibrary.splice(element.getAttribute('data-attribute'), 1);
-    element.remove();
+    displayBooks();
 };
